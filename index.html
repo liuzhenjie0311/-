@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>目录</h1>
+  <ul>
+    <li>
+      <a href="#js">JS</a>
+      <ol>
+        <li><a href="#this是什么，说说this的指向问题">this是什么，说说this的指向问题</a></li>
+        <li><a href="#call，apply，bind是什么，说说他们的区别">call，apply，bind是什么，说说他们的区别</a></li>
+        <li><a href="#箭头函数是什么，说说和普通函数的区别">箭头函数是什么，说说和普通函数的区别</a></li>
+        <li><a href="#set和map的区别">set和map的区别</a></li>
+        <li><a href="#js的继承">js的继承</a></li>
+        <li><a href="#"></a></li>
+      </ol>
+    </li>
+    <li>
+      <a href="#react">React</a>
+      <ol>
+        <li><a href="#"></a></li>
+      </ol>
+    </li>
+    <li>
+      <a href="#vue">Vue</a>
+      <ol>
+        <li><a href="#Vue组件通讯有哪些方式">Vue组件通讯有哪些方式</a></li>
+      </ol>
+    </li>
+  </ul>
+  <h2 id="js">JS</h2>
+  <ol>
+    <li>
+      <a href="https://www.cnblogs.com/pssp/p/5216085.html">
+        <h3 id="this是什么，说说this的指向问题">this是什么，说说this的指向问题</h3>
+      </a>
+      <p>this是代表当前作用域指针，this定义时不确定，调用时才确定的，在外部和函数内的this会指向window，在object中给某个属性赋值为函数，
+        该属性对应的函数内部this就指向object，如果将object.key赋值给另外一个对象，则再次调用函数时，this的指向就会变成调用对象，this指向还能使用call，apply，bind进行替换，
+        普通函数用new关键字构造对象实例的时候，this指向新建的实例。
+      </p>
+    </li>
+    <li>
+      <a href="https://www.cnblogs.com/pssp/p/5215621.html">
+        <h3 id="call，apply，bind是什么，说说他们的区别">call，apply，bind是什么，说说他们的区别</h3>
+      </a>
+      <p>他们三个都是可以替换this指向，call和apply使用时会立即调用，bind则是返回被修改过this的新方法，由自己控制什么时候调用，call和bind都是单个传参，多个参数使用","进行分割，
+        apply则是通过数组传值，如果bind时传入了参数，调用bind后的函数也传递了参数时，此参数会被push进arguments里
+      </p>
+    </li>
+    <li>
+      <a href="https://blog.csdn.net/qq_40713392/article/details/106319971">
+        <h3 id="箭头函数是什么，说说和普通函数的区别">箭头函数是什么，说说和普通函数的区别</h3>
+      </a>
+      <p>
+        箭头函数也称拉姆达表达式，箭头函数没有自己的this指针，永远都会指向父级的this，普通函数this指向调用者，箭头函数内部也没有arguments，如果要用arguments，需要在形参的末尾使用扩展运算符获取，如(a,b,...arguments),如果扩展运算符不在末尾则会报错，
+        箭头函数没有原型对象，普通函数有原型对象，箭头函数不能使用new关键字，因为它不能作为构造函数，使用new会报错
+      </p>
+      <pre>
+        let a = (a, ...b) => {
+        console.log(a, b)
+        }
+        a(1, 2, 3, 4) // 1 (3) [2, 3, 4]
+      </pre>
+    </li>
+    <li>
+      <a href="https://blog.csdn.net/qq_40713392/article/details/106319971">
+        <h3 id="set和map的区别">set和map的区别</h3>
+      </a>
+      <p>
+        Set 对象类似于数组，且成员的值都是唯一的。在传入有重复值的数组生成set对象的时候，重复的值会被过滤掉。
+        Map 对象是键值对的集合，键可以是数字，字符串，还可以是对象
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="js的继承">
+        <h3 id="js的继承">js的继承</h3>
+      </a>
+      <p>
+        es5的继承是可以通过修改prototype来实现的，也可以在子类里使用父类.call(this)来实现，
+        es6是通过extends来实现继承，在constrlor里使用super()方法将父类this传递给子类
+      </p>
+      <pre>
+        let a = function(name) {
+          this.name = name || 'jack'
+          this.age = 13
+        }
+        a.prototype.getName = function() { console.log(this.name) }
+        function b() { }
+        b.prototype = new a('zj')
+        b.prototype.getAge = function() { console.log(this.age) }
+        let c = new b('zj')
+        c.getName()
+        c.getAge()
+        // 第二种
+        let a = function(name) {
+          this.name = name || 'jack'
+          this.age = 13
+        }
+        function b() {
+          a.apply(this, arguments)
+        }
+        let c = new b('zj')
+        console.log(c.name)
+      </pre>
+    </li>
+    <li>
+      <a href="">
+        <h3 id=""></h3>
+      </a>
+      <p>
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="">
+        <h3 id=""></h3>
+      </a>
+      <p>
+      </p>
+      <pre></pre>
+    </li>
+  </ol>
+
+
+  <h2 id="">React</h2>
+  <ol>
+    <li>
+      <a href="">
+        <h3 id=""></h3>
+      </a>
+      <p>
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="">
+        <h3 id=""></h3>
+      </a>
+      <p>
+      </p>
+      <pre></pre>
+    </li>
+  </ol>
+  <h2 id="vue">Vue</h2>
+  <ol>
+    <li>
+      <a href="https://www.cnblogs.com/wenshaochang123/p/14888494.html">
+        <h3 id="Vue组件通讯有哪些方式">Vue组件通讯有哪些方式</h3>
+      </a>
+      <p>
+        1.props和$emit,子组件接收props，使用$emit触发事件执行父组件的方法<br />
+        2.$parent和$children用来获取组件的父组件和子组件<br />
+        3.通过provide提供数据，子组件使用inject注入数据<br />
+        4.通过$router获取url上的参数<br />
+        5.$refs获取组件实例<br />
+        6.eventBus文件传递数据<br />
+        7.vuex状态管理<br />
+        8.reactive数据共享<br />
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="v-if 和 v-show 的区别">
+        <h3 id="v-if 和 v-show 的区别"></h3>
+      </a>
+      <p>
+        v-if条件不满足时不会被编译，v-show通过display属性控制组件是否显示
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="怎样理解 Vue 的单项数据流">
+        <h3 id="怎样理解 Vue 的单项数据流"></h3>
+      </a>
+      <p>
+        数据总是从父组件传递到子组件，子组件无法直接修改父组件传递的数据，保证了数据流向不会变得难以理解
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="computed 和 watch 的区别和运用的场景">
+        <h3 id="computed 和 watch 的区别和运用的场景"></h3>
+      </a>
+      <p>
+        computed是计算属性，依赖其他属性计算值，并且computed的值有缓存，只有依赖的数据发生变化时才会重新计算，<br />
+        watch是监听到值的变化就会执行回调
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="Vue 2.0 响应式数据的原理">
+        <h3 id="Vue 2.0 响应式数据的原理"></h3>
+      </a>
+      <p>
+        整体思路是数据劫持 + 观察者模式<br />
+
+        对象内部通过 defineReactive 方法，使用 Object.defineProperty 将属性进行劫持（只会劫持已存在的属性），<br />
+        数组则是通过重写数组来实现。当页面使用对应属性时，每个属性都拥有自己的 dep属性，存在它所依赖的watcher （依赖收集）get，<br />
+        当属性变化后会通知自己对应的 watcher 去更新（派发更新）set。<br />
+
+        1、Object.defineProperty 数据劫持<br />
+        2、使用 getter 收集依赖 ，setter 通知 watcher派发更新。<br />
+        3、watcher 发布订阅模式。<br />
+
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="Vue 如何检测数组变化">
+        <h3 id="Vue 如何检测数组变化"></h3>
+      </a>
+      <p>
+        数组考虑性能原因没有用 defineProperty 对数组的每一项进行拦截，<br />
+        而是选择对7种数组（push,shift,pop,splice,unshift,sort,reverse）方法进行重写（AOP 切片思想）。<br />
+
+        所以在 Vue 中修改数组的索引和长度无法监控到。需要通过以上7种变异方法修改数组才会触发数组对应的watcher进行更新。
+
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="Vue3.0 用过吗？了解多少">
+        <h3 id="Vue3.0 用过吗？了解多少"></h3>
+      </a>
+      <p>
+        响应式原理的改变 Vue3.x 使用 Proxy 取代 Vue2.x 版本的 Object.defineProperty。<br />
+        组件选项声明方式 Vue3.x 使用 Composition API setup是Vue3.x新增的一个选项，他是组件内使用Composition API 的入口。<br />
+
+        模板语法变化 slot 具名插槽语法，自定义指令v-model升级。<br />
+        其他方面的更改 Suspense支持Fragment（多个根节点）和 Protal（在dom其他部分渲染组件内容）组件，针对一些特殊的场景做了处理。基于 treeShaking 优化，提供了更多的内置功能。
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="Vue的父子组件生命周期钩子函数执行顺序">
+        <h3 id="Vue的父子组件生命周期钩子函数执行顺序"></h3>
+      </a>
+      <p>
+        加载渲染过程
+        父beforeCreate -> 父created -> 父beforeMount -> 子beforeCreate -> 子created -> 子beforeMount -> 子mounted ->
+        父mounted<br />
+        子组件更新过程
+        父beforeUpdate -> 子beforeUpdate -> 子updated -> 父updated<br />
+        父组件更新过程
+        父beforeUpdate -> 父updated<br />
+        销毁过程
+        父beforeDestroy -> 子beforeDestroy -> 子destroyed -> 父destroyed
+      </p>
+      <pre></pre>
+    </li>
+    <li>
+      <a href="虚拟DOM是什么？有什么优缺点">
+        <h3 id="虚拟DOM是什么？有什么优缺点"></h3>
+      </a>
+      <p>
+        由于在浏览器中操作DOM是很昂贵的。频繁操作DOM，会产生一定性能问题。这就是虚拟Dom的产生原因。Vue2的Virtual DOM 借鉴了开源库 snabbdom 的实现。Virtual
+        DOM本质就是用一个原生的JS对象去描述一个DOM节点，是对真实DOM的一层抽象。<br />
+        优点：<br />
+        1、保证性能下限：框架的虚拟DOM需要适配任何上层API可能产生的操作，他的一些DOM操作的实现必须是普适的，所以它的性能并不是最优的；但是比起粗暴的DOM操作性能要好很多，因此框架的虚拟DOM至少可以保证在你不需要手动优化的情况下，依然可以提供还不错的性能，既保证性能的下限。<br />
+        2、无需手动操作DOM：我们不需手动去操作DOM，只需要写好 View-Model的 代码逻辑，框架会根据虚拟DOM和数据双向绑定，帮我们以可预期的方式更新视图，极大提高我们的开发效率。<br />
+        3、跨平台：虚拟DOM本质上是JavaScript对象，而DOM与平台强相关，相比之下虚拟DOM可以进行更方便地跨平台操作，例如服务器端渲染、weex开发等等。<br />
+        缺点：<br />
+        1、无法进行极致优化：虽然虚拟DOM + 合理的优化，足以应对大部分应用的性能需要，但在一些性能要求极高的应用中虚拟DOM无法进行针对性的极致优化。<br />
+        2、首次渲染大量DOM时，由于多了一层DOM计算，会比innerHTML插入慢。
+      </p>
+      <pre></pre>
+    </li>
+  </ol>
+
+</body>
+<script>
+  let arr = [1, 1, 1, 2, 3, 4]
+  let a = function(name) {
+    this.name = name || 'jack'
+    this.age = 13
+  }
+  function b() {
+    a.apply(this, arguments)
+  }
+  let c = new b('zj')
+  console.log(c.name)
+</script>
+
+</html>
